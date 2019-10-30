@@ -18,15 +18,14 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 @Configuration
 public class KafkaConsumerConfig {
 
-  @Value("${kafka.bootstrap-address}")
-  private String bootstrapAddress;
+  @Value("${kafka.bootstrap-servers}")
+  private String bootstrapServers;
 
   @Bean
   public ConsumerFactory<String, String> consumerFactory() {
     Map<String, Object> config = new HashMap<>();
 
-    config.put(BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-    config.put(GROUP_ID_CONFIG, "group_id");
+    config.put(BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
     config.put(KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
     config.put(VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 
